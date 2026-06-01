@@ -10,8 +10,8 @@
   --color-muted: #6B6358;
   --color-stone: #A89E8A;
 
-  --font-display: 'Cormorant', Georgia, serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-display: 'Inter var', 'Inter', sans-serif;
+  --font-body: 'Inter var', 'Inter', sans-serif;
 }
 
 @keyframes slideInRight {
@@ -54,6 +54,13 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: rgba(196, 163, 90, 0.45); }
 
 ::selection { background: rgba(196, 163, 90, 0.18); color: #EDE8DC; }
+
+/* ── Inter variable font optimisations ── */
+:root {
+  font-feature-settings: 'cv11', 'ss01';
+  font-variation-settings: 'opsz' 32;
+  -webkit-font-smoothing: antialiased;
+}
 
 /* ── Centered layout container (in @layer base so Tailwind utilities can override) ── */
 @layer base {

@@ -1,7 +1,5 @@
 const NAV_LINKS = [
-  { label: 'Layanan', id: 'services' },
   { label: 'Galeri', id: 'gallery' },
-  { label: 'Paket', id: 'packages' },
   { label: 'Kontak', id: 'contact' },
 ]
 

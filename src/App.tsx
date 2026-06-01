@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import Services from './components/Services'
 import Gallery from './components/Gallery'
-import Packages from './components/Packages'
 import OrderModal from './components/OrderModal'
 import PaymentStatus from './components/PaymentStatus'
 import Footer from './components/Footer'
@@ -58,9 +56,7 @@ export default function App() {
       <div className="min-h-screen bg-[#0C0B09] font-body">
         <Navbar onOrder={() => openOrder()} />
         <Hero onOrder={() => openOrder()} />
-        <Services />
         <Gallery />
-        <Packages onOrder={openOrder} />
         <Footer />
       </div>
 
