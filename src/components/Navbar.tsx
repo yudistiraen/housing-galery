@@ -1,15 +1,11 @@
 import { useState, useEffect } from 'react'
 
-interface NavbarProps {
-  onOrder: () => void
-}
-
 const NAV_LINKS = [
   { label: 'Galeri', id: 'gallery' },
   { label: 'Kontak', id: 'contact' },
 ]
 
-export default function Navbar({ onOrder }: NavbarProps) {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -28,7 +24,8 @@ export default function Navbar({ onOrder }: NavbarProps) {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       scrolled ? 'bg-charcoal/95 backdrop-blur-md border-b border-[rgba(196,163,90,0.08)]' : 'bg-transparent'
     }`}>
-      <div className="layout py-5 flex items-center justify-between m-auto">
+      <div className="layout py-5 flex items-center justify-between">
+        {/* Logo */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="flex items-center gap-2.5 group focus-visible:outline-none"
@@ -41,6 +38,7 @@ export default function Navbar({ onOrder }: NavbarProps) {
           </span>
         </button>
 
+        {/* Desktop nav links */}
         <div className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map(link => (
             <button
@@ -53,7 +51,7 @@ export default function Navbar({ onOrder }: NavbarProps) {
           ))}
         </div>
 
-
+        {/* Mobile hamburger */}
         <button
           onClick={() => setMenuOpen(v => !v)}
           aria-label={menuOpen ? 'Tutup menu' : 'Buka menu'}
@@ -65,6 +63,7 @@ export default function Navbar({ onOrder }: NavbarProps) {
         </button>
       </div>
 
+      {/* Mobile dropdown */}
       <div className={`md:hidden overflow-hidden transition-all duration-300 ${menuOpen ? 'max-h-80' : 'max-h-0'} bg-charcoal/98 backdrop-blur-md border-t border-[rgba(196,163,90,0.08)]`}>
         <div className="px-6 py-4 flex flex-col">
           {NAV_LINKS.map(link => (
@@ -76,7 +75,6 @@ export default function Navbar({ onOrder }: NavbarProps) {
               {link.label}
             </button>
           ))}
-          
         </div>
       </div>
     </nav>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Gallery from './components/Gallery'
@@ -8,24 +8,19 @@ import Footer from './components/Footer'
 
 type View = 'home' | 'payment-success' | 'payment-failed'
 
+function getInitialView(): { view: View; transactionId: string } {
+  const params = new URLSearchParams(window.location.search)
+  const status = params.get('status')
+  const txId = params.get('transaction_id') ?? params.get('order_id') ?? ''
+  if (status === 'success') return { view: 'payment-success', transactionId: txId }
+  if (status === 'failed' || status === 'cancel' || status === 'cancelled') return { view: 'payment-failed', transactionId: '' }
+  return { view: 'home', transactionId: '' }
+}
+
 export default function App() {
-  const [view, setView] = useState<View>('home')
-  const [transactionId, setTransactionId] = useState('')
+  const [{ view, transactionId }, setViewState] = useState(getInitialView)
   const [orderOpen, setOrderOpen] = useState(false)
   const [selectedPkg, setSelectedPkg] = useState('standard')
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const status = params.get('status')
-    const txId = params.get('transaction_id') ?? params.get('order_id') ?? ''
-
-    if (status === 'success') {
-      setView('payment-success')
-      setTransactionId(txId)
-    } else if (status === 'failed' || status === 'cancel' || status === 'cancelled') {
-      setView('payment-failed')
-    }
-  }, [])
 
   const openOrder = (pkg?: string) => {
     setSelectedPkg(pkg ?? 'standard')
@@ -33,7 +28,7 @@ export default function App() {
   }
 
   const goHome = () => {
-    setView('home')
+    setViewState({ view: 'home', transactionId: '' })
     window.history.replaceState({}, '', '/')
   }
 
@@ -43,7 +38,6 @@ export default function App() {
 
   return (
     <>
-      {/* Subtle grain overlay for depth */}
       <div
         aria-hidden
         className="fixed inset-0 pointer-events-none z-[9999] opacity-[0.025]"
@@ -54,7 +48,7 @@ export default function App() {
       />
 
       <div className="min-h-screen bg-[#0C0B09] font-body">
-        <Navbar onOrder={() => openOrder()} />
+        <Navbar />
         <Hero onOrder={() => openOrder()} />
         <Gallery />
         <Footer />
