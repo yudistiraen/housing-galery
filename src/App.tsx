@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import About from './components/About'
 import Gallery from './components/Gallery'
 import OrderModal from './components/OrderModal'
 import PaymentStatus from './components/PaymentStatus'
@@ -50,6 +51,7 @@ export default function App() {
       <div className="min-h-screen bg-[#0C0B09] font-body">
         <Navbar />
         <Hero onOrder={() => openOrder()} />
+        <About />
         <Gallery />
         <Footer />
       </div>
