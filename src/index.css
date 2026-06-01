@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold: #C4A35A;
+  --color-gold-light: #DBBF7A;
+  --color-cream: #EDE8DC;
+  --color-charcoal: #0C0B09;
+  --color-surface: #161410;
+  --color-surface-2: #1E1C17;
+  --color-muted: #6B6358;
+  --color-stone: #A89E8A;
+
+  --font-display: 'Cormorant', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+* { box-sizing: border-box;}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background-color: #0C0B09;
+  color: #A89E8A;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  min-height: 100svh;
+  display: block;
+  text-align: left;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0C0B09; }
+::-webkit-scrollbar-thumb { background: rgba(196, 163, 90, 0.25); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(196, 163, 90, 0.45); }
+
+::selection { background: rgba(196, 163, 90, 0.18); color: #EDE8DC; }
+
+/* ── Centered layout container (in @layer base so Tailwind utilities can override) ── */
+@layer base {
+  .layout {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(1.5rem, 5vw, 3rem);
+    padding-right: clamp(1.5rem, 5vw, 3rem);
+  }
+}
