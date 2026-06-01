@@ -5,9 +5,7 @@ interface NavbarProps {
 }
 
 const NAV_LINKS = [
-  { label: 'Layanan', id: 'services' },
   { label: 'Galeri', id: 'gallery' },
-  { label: 'Paket', id: 'packages' },
   { label: 'Kontak', id: 'contact' },
 ]
 
@@ -55,12 +53,6 @@ export default function Navbar({ onOrder }: NavbarProps) {
           ))}
         </div>
 
-        <button
-          onClick={onOrder}
-          className="hidden md:block px-5 py-2.5 border border-gold text-gold text-[11px] tracking-[0.22em] uppercase font-body font-medium hover:bg-gold hover:text-charcoal active:scale-95 transition-all duration-300 focus-visible:outline-none"
-        >
-          Pesan Sekarang
-        </button>
 
         <button
           onClick={() => setMenuOpen(v => !v)}
@@ -84,12 +76,7 @@ export default function Navbar({ onOrder }: NavbarProps) {
               {link.label}
             </button>
           ))}
-          <button
-            onClick={() => { onOrder(); setMenuOpen(false) }}
-            className="mt-4 py-3 border border-gold text-gold text-[11px] tracking-[0.22em] uppercase hover:bg-gold hover:text-charcoal transition-all duration-300 focus-visible:outline-none"
-          >
-            Pesan Sekarang
-          </button>
+          
         </div>
       </div>
     </nav>
